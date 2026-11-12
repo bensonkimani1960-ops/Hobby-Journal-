@@ -1,169 +1,297 @@
-# Hobby-Journal-
-a website about hobbies 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Hobby Journal | Arduino • Yo-Yo • RC Models</title>
-    <style>
-        * { box-sizing: border-box; }
-        body { font-family: system-ui, sans-serif; margin: 0; background: #f4f4f5; color: #222; line-height: 1.6; }
-        body.dark { background: #111; color: #eee; }
-        body.dark section, body.dark .card { background: #1e1e1e; color: #eee; border-color: #333; }
-        header { background: #111; color: white; padding: 2.5rem 1rem; text-align: center; }
-        header h1 { margin: 0; font-size: 2rem; }
-        header p { color: #bbb; }
-        nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4rem; background: #222; padding: 0.6rem; position: sticky; top: 0; z-index: 10; }
-        nav a { color: white; padding: 0.6rem 1.1rem; text-decoration: none; border-radius: 999px; }
-        nav a:hover { background: #444; }
-        nav button { margin-left: 0.5rem; border: 0; border-radius: 999px; padding: 0.6rem 1rem; cursor: pointer; }
-        main { max-width: 960px; margin: 0 auto; padding: 1.5rem 1rem; }
-        section { background: white; padding: 1.5rem; border-radius: 14px; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-        .tag { background: #eee; padding: 0.2rem 0.8rem; border-radius: 999px; font-size: 0.85rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .card { border: 1px solid #eee; border-radius: 12px; padding: 1rem; }
-        .card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; background: #ddd; }
-        .progress { height: 8px; background: #eee; border-radius: 999px; overflow: hidden; margin-top: 0.5rem; }
-        .progress div { height: 100%; background: #22c55e; }
-        input, textarea, select { width: 100%; padding: 0.7rem; border: 1px solid #ddd; border-radius: 8px; margin-top: 0.5rem; font: inherit; }
-        button.primary { background: #111; color: white; border: 0; padding: 0.7rem 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 0.6rem; }
-        footer { text-align: center; color: #888; padding: 2rem 1rem; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben Logic | Hobby & Research Hub</title>
+
+<style>
+:root {
+  --bg:#101827;
+  --card:#1c293c;
+  --text:#ffffff;
+  --accent:#00d5ff;
+}
+* {box-sizing:border-box;scroll-behavior:smooth}
+body {
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header {
+  padding:55px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#102c50,#006c91);
+}
+header h1 {font-size:36px;margin-bottom:10px}
+header p {color:#d4f5ff}
+nav {
+  background:#172235;
+  padding:15px;
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+nav a {
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover {color:var(--accent)}
+button {
+  background:var(--accent);
+  color:#071522;
+  border:0;
+  padding:10px 16px;
+  border-radius:7px;
+  cursor:pointer;
+}
+.container {max-width:1100px;margin:auto;padding:25px}
+section {padding:35px 0}
+h2 {color:var(--accent)}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card {
+  background:var(--card);
+  padding:22px;
+  border-radius:12px;
+  border:1px solid #30435b;
+  transition:transform .2s;
+}
+.card:hover {transform:translateY(-5px)}
+.card h3 {color:var(--accent)}
+.card a {color:var(--accent)}
+input,textarea {
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:6px;
+  border:1px solid #53647b;
+  background:#172235;
+  color:white;
+}
+footer {
+  text-align:center;
+  padding:25px;
+  background:#172235;
+  color:#aaa;
+}
+.light {
+  --bg:#edf3f8;
+  --card:#ffffff;
+  --text:#142033;
+}
+.light nav,.light footer {background:#dce7f0}
+.light nav a {color:#142033}
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>Welcome to My Hobby Journey 🚀</h1>
-        <p>Arduino • Yo-Yo • RC Models — Build. Practice. Repeat.</p>
-        <p id="greeting">Hello, Maker!</p>
-    </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#arduino">⚡ Arduino</a>
-        <a href="#yoyo">🪀 Yo-Yo</a>
-        <a href="#rc">🚗 RC Models</a>
-        <a href="#gallery">📸 Gallery</a>
-        <a href="#log">📝 My Log</a>
-        <button onclick="toggleDark()">🌙 Dark Mode</button>
-    </nav>
+<header>
+<h1>BEN LOGIC</h1>
+<p>Hobby • Engineering • Coding • Research</p>
+<p>Welcome to my world of creativity and invention.</p>
+<button onclick="toggleTheme()">Switch Theme</button>
+</header>
 
-    <main>
-        <section id="home">
-            <span class="tag">About Me</span>
-            <h2>Hi, I'm learning by doing</h2>
-            <p>This is my journal. I don't just watch tutorials — I build, I fail, I fix, I try again.</p>
-            <div class="grid">
-                <div class="card"><h3>⚡ Arduino</h3><p>Circuits, sensors & code</p><p><b>Projects:</b> 3</p></div>
-                <div class="card"><h3>🪀 Yo-Yo</h3><p>Skill, patience & flow</p><p><b>Tricks learned:</b> 4</p></div>
-                <div class="card"><h3>🚗 RC Models</h3><p>Speed, tuning & crashes</p><p><b>Cars:</b> 2</p></div>
-            </div>
-        </section>
+<nav>
+<a href="#home">Home</a>
+<a href="#arduino">Arduino</a>
+<a href="#rc">RC Engineering</a>
+<a href="#yoyo">Yo-Yo</a>
+<a href="#coding">Coding</a>
+<a href="#research">Research</a>
+<a href="#journal">Journal</a>
+</nav>
 
-        <section id="arduino">
-            <span class="tag">Electronics</span>
-            <h2>Arduino Projects</h2>
-            <p>My brain for electronics. I learn one sensor at a time.</p>
-            <div class="grid">
-                <div class="card"><h3>💡 Blink LED</h3><p>First project ever.</p><p>✅ Done</p><div class="progress"><div style="width:100%"></div></div></div>
-                <div class="card"><h3>🌡️ Temp + LCD</h3><p>DHT11 shows temp on screen.</p><p>🔧 In Progress</p><div class="progress"><div style="width:60%"></div></div></div>
-                <div class="card"><h3>🤖 Line Follower</h3><p>Car that follows black line.</p><p>💡 Idea</p><div class="progress"><div style="width:10%"></div></div></div>
-            </div>
-        </section>
+<div class="container">
 
-        <section id="yoyo">
-            <span class="tag">Skill Toy</span>
-            <h2>Yo-Yo Tricks</h2>
-            <p>Looks easy on YouTube. It's not. 😅</p>
-            <div class="grid">
-                <div class="card"><h3>Sleeper</h3><p>Hold 25 seconds</p><p>✅ Done</p></div>
-                <div class="card"><h3>Trapeze</h3><p>Landing 7/10 times</p><p>🔧 Practicing</p></div>
-                <div class="card"><h3>Bind Return</h3><p>For unresponsive yoyo</p><p>🔧 Practicing</p></div>
-                <div class="card"><h3>Rock the Baby</h3><p>Classic trick</p><p>💡 Next</p></div>
-            </div>
-        </section>
+<section id="home">
+<h2>My Hobby Journey</h2>
+<p>
+I am passionate about technology, electronics,
+engineering, coding and creative inventions.
+This is where I document my projects,
+experiments and learning journey.
+</p>
+</section>
 
-        <section id="rc">
-            <span class="tag">RC Models</span>
-            <h2>RC Models</h2>
-            <p>Fast cars, broken parts, happy wallet — no, sad wallet.</p>
-            <div class="grid">
-                <div class="card"><h3>1:10 Drift Car</h3><p>New tyres, better steering. Drifts clean now.</p><p>✅ Running</p></div>
-                <div class="card"><h3>RC Crawler</h3><p>For rocks and off-road.</p><p>💡 Wishlist</p></div>
-                <div class="card"><h3>🛠️ Repair Log</h3><p>Broken arm: 2x<br>Broken wheel: 1x<br>Lesson: Don't drift into wall</p></div>
-            </div>
-        </section>
+<section id="arduino">
+<h2>Arduino Laboratory</h2>
+<div class="grid">
+<div class="card">
+<h3>Electronics</h3>
+<p>Circuits, sensors, LEDs, buzzers and components.</p>
+</div>
+<div class="card">
+<h3>Arduino Projects</h3>
+<p>Microcontrollers, motors, displays and automation.</p>
+</div>
+<div class="card">
+<h3>Experiments</h3>
+<p>Record circuit experiments and discoveries.</p>
+</div>
+</div>
+</section>
 
-        <section id="gallery">
-            <span class="tag">Photos</span>
-            <h2>Gallery</h2>
-            <p>Replace these with your own photos later.</p>
-            <div class="grid">
-                <div class="card"><img alt="Arduino photo"><p>Arduino setup</p></div>
-                <div class="card"><img alt="Yo-Yo photo"><p>Yo-Yo practice</p></div>
-                <div class="card"><img alt="RC car photo"><p>RC car</p></div>
-            </div>
-        </section>
+<section id="rc">
+<h2>RC Engineering</h2>
+<div class="grid">
+<div class="card">
+<h3>RC Vehicles</h3>
+<p>Cars, trucks and custom RC machines.</p>
+</div>
+<div class="card">
+<h3>Mechanical Design</h3>
+<p>Gears, motors, Lego mechanisms and inventions.</p>
+</div>
+<div class="card">
+<h3>RC Experiments</h3>
+<p>Transmitters, receivers and motor control.</p>
+</div>
+</div>
+</section>
 
-        <section id="log">
-            <h2>📝 My Daily Log</h2>
-            <p>What did you do today? It saves in your browser, even if you close the page.</p>
-            <select id="logHobby">
-                <option>Arduino</option><option>Yo-Yo</option><option>RC Models</option>
-            </select>
-            <input id="logTitle" placeholder="Title: e.g. Fixed temp sensor">
-            <textarea id="logText" rows="3" placeholder="What happened? What did you learn?"></textarea>
-            <button class="primary" onclick="saveLog()">Save Entry</button>
-            <button class="primary" onclick="clearLogs()" style="background:#dc2626">Clear All</button>
-            <div id="entries"></div>
-        </section>
-    </main>
+<section id="yoyo">
+<h2>Yo-Yo Zone</h2>
+<div class="grid">
+<div class="card">
+<h3>Yo-Yo Tricks</h3>
+<p>Practice tricks and record your progress.</p>
+</div>
+<div class="card">
+<h3>Collections</h3>
+<p>Explore yo-yos, bearings, strings and accessories.</p>
+</div>
+</div>
+</section>
 
-    <footer>
-        <p>Made with ❤️ by me • My Hobby Journal • 2026</p>
-        <p><a href="#home">Back to top ↑</a></p>
-    </footer>
+<section id="coding">
+<h2>Coding Academy</h2>
+<div class="grid">
+<div class="card">
+<h3>Python</h3>
+<p>Learn programming, logic and automation.</p>
+</div>
+<div class="card">
+<h3>Web Development</h3>
+<p>HTML, CSS and JavaScript projects.</p>
+</div>
+<div class="card">
+<h3>Arduino Coding</h3>
+<p>Write programs for electronic inventions.</p>
+</div>
+</div>
+</section>
 
-    <script>
-        // 1. Greeting based on time
-        const hour = new Date().getHours();
-        let greet = "Hello, Maker!";
-        if (hour < 12) greet = "Good morning, Maker! ☀️";
-        else if (hour < 18) greet = "Good afternoon, Maker! ⚡";
-        else greet = "Good evening, Maker! 🌙";
-        document.getElementById('greeting').textContent = greet;
+<section id="research">
+<h2>Research & Inventions</h2>
+<div class="grid">
+<div class="card">
+<h3>New Ideas</h3>
+<p>Document creative ideas and future inventions.</p>
+</div>
+<div class="card">
+<h3>Project Development</h3>
+<p>Turn ideas into working prototypes.</p>
+</div>
+</div>
+</section>
 
-        // 2. Dark mode
-        function toggleDark() {
-            document.body.classList.toggle('dark');
-        }
+<section id="journal">
+<h2>My Research Journal</h2>
+<p>Write down your latest ideas and discoveries.</p>
 
-        // 3. Save log in browser
-        function loadLogs() {
-            const logs = JSON.parse(localStorage.getItem('hobbyLogs') || '[]');
-            document.getElementById('entries').innerHTML = logs.map(l =>
-                `<div class="card" style="margin-top:1rem"><b>[${l.hobby}] ${l.title}</b><br><small>${l.date}</small><p>${l.text}</p></div>`
-            ).join('');
-        }
-        function saveLog() {
-            const hobby = document.getElementById('logHobby').value;
-            const title = document.getElementById('logTitle').value.trim();
-            const text = document.getElementById('logText').value.trim();
-            if (!title || !text) return alert('Add title + notes first');
-            const logs = JSON.parse(localStorage.getItem('hobbyLogs') || '[]');
-            logs.unshift({ hobby, title, text, date: new Date().toLocaleString() });
-            localStorage.setItem('hobbyLogs', JSON.stringify(logs));
-            document.getElementById('logTitle').value = '';
-            document.getElementById('logText').value = '';
-            loadLogs();
-        }
-        function clearLogs() {
-            if (confirm('Delete all log entries?')) {
-                localStorage.removeItem('hobbyLogs');
-                loadLogs();
-            }
-        }
-        loadLogs();
-    </script>
+<input id="title" placeholder="Project or journal title">
+<textarea id="note" rows="5"
+placeholder="Write your notes here..."></textarea>
+<button onclick="saveNote()">Save Entry</button>
+
+<div id="entries"></div>
+</section>
+
+</div>
+
+<footer>
+<p>BEN LOGIC | Hobby & Research Hub</p>
+<p>Learning • Creating • Experimenting • Inventing</p>
+</footer>
+
+<script>
+function toggleTheme() {
+ document.body.classList.toggle("light");
+}
+
+function saveNote() {
+ const title = document.getElementById("title").value.trim();
+ const note = document.getElementById("note").value.trim();
+
+ if (!title || !note) {
+   alert("Please enter a title and your notes.");
+   return;
+ }
+
+ const entries = JSON.parse(
+   localStorage.getItem("benNotes") || "[]"
+ );
+
+ entries.unshift({
+   title:title,
+   note:note,
+   date:new Date().toLocaleString()
+ });
+
+ localStorage.setItem("benNotes",JSON.stringify(entries));
+
+ document.getElementById("title").value="";
+ document.getElementById("note").value="";
+ showNotes();
+}
+
+function showNotes() {
+ const entries = JSON.parse(
+   localStorage.getItem("benNotes") || "[]"
+ );
+
+ document.getElementById("entries").innerHTML =
+ entries.map((entry,index) => `
+ <div class="card" style="margin-top:15px">
+ <h3>${escapeHTML(entry.title)}</h3>
+ <p>${escapeHTML(entry.note).replace(/\n/g,"<br>")}</p>
+ <small>${escapeHTML(entry.date)}</small><br><br>
+ <button onclick="deleteNote(${index})">Delete</button>
+ </div>
+ `).join("");
+}
+
+function escapeHTML(value) {
+ return value.replace(/[&<>"']/g, char => ({
+ "&":"&amp;","<":"&lt;",">":"&gt;",
+ '"':"&quot;","'":"&#39;"
+ })[char]);
+}
+
+function deleteNote(index) {
+ const entries = JSON.parse(
+   localStorage.getItem("benNotes") || "[]"
+ );
+ entries.splice(index,1);
+ localStorage.setItem("benNotes",JSON.stringify(entries));
+ showNotes();
+}
+
+showNotes();
+</script>
+
 </body>
 </html>
