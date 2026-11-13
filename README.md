@@ -118,14 +118,164 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 <div class="note">Sensor voltage and connections differ by model. Check the datasheet before connecting a sensor.</div>
 <div class="card"><h3>ArduinoDroid Application</h3><p>ArduinoDroid is an Android application for writing, compiling and uploading Arduino programs.</p><ul><li>Write Arduino code.</li><li>Compile programs.</li><li>Upload code to compatible boards.</li><li>Practice programming using your phone.</li></ul><p>Direct uploading requires compatible USB OTG hardware, board support and permissions.</p></div>
 <div class="card"><h3>First Arduino Program: Blink LED</h3><pre><code>void setup() {
-pinMode(13, OUTPUT);
+  pinMode(13, OUTPUT);
 }
 void loop() {
-digitalWrite(13, HIGH);
-delay(1000);
-digitalWrite(13, LOW);
-delay(1000);
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
 }</code></pre><p>This program switches the built-in LED on and off every second.</p></div>
+
+<h3>Arduino Projects</h3>
+
+<div class="card"><h3>Project 1: Fade - LED Brightness Control</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>1x LED</li><li>1x 220 ohm resistor</li><li>Breadboard and jumper wires</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>LED long leg (positive) to Pin 9 through 220 ohm resistor</li><li>LED short leg (negative) to GND</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>int ledPin = 9;
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+void loop() {
+  for (int b = 0; b <= 255; b++) {
+    analogWrite(ledPin, b);
+    delay(10);
+  }
+  for (int b = 255; b >= 0; b--) {
+    analogWrite(ledPin, b);
+    delay(10);
+  }
+}</code></pre>
+<p>The LED slowly gets brighter, then slowly fades out using PWM.</p></div>
+
+<div class="card"><h3>Project 2: Servo Motor Control</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>1x SG90 servo motor</li><li>Jumper wires</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>Servo Brown / Black wire to GND</li><li>Servo Red wire to 5V</li><li>Servo Orange / Yellow wire to Pin 9</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>#include &lt;Servo.h&gt;
+Servo myServo;
+void setup() {
+  myServo.attach(9);
+}
+void loop() {
+  myServo.write(0);
+  delay(1000);
+  myServo.write(90);
+  delay(1000);
+  myServo.write(180);
+  delay(1000);
+  myServo.write(90);
+  delay(1000);
+}</code></pre>
+<p>The servo moves from 0 to 90 to 180 degrees and back.</p></div>
+
+<div class="card"><h3>Project 3: Liquid Crystal Display - LCD 16x2</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>1x LCD 16x2 with I2C module</li><li>Jumper wires</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>LCD VCC to 5V</li><li>LCD GND to GND</li><li>LCD SDA to A4</li><li>LCD SCL to A5</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+void setup() {
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("BEN LOGIC");
+  lcd.setCursor(0, 1);
+  lcd.print("Arduino Lab");
+}
+void loop() {
+}</code></pre>
+<p>If the LCD is blank, change 0x27 to 0x3F in the code.</p></div>
+
+<div class="card"><h3>Project 4: Light Activated Alarm</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>1x LDR</li><li>1x 10k ohm resistor</li><li>1x Buzzer</li><li>1x LED</li><li>1x 220 ohm resistor</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>LDR one leg to 5V, other leg to A0 and to GND through 10k resistor</li><li>Buzzer positive to Pin 8, negative to GND</li><li>LED positive to Pin 13 through 220 ohm resistor, negative to GND</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>int ldrPin = A0;
+int buzzerPin = 8;
+int ledPin = 13;
+void setup() {
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+void loop() {
+  int lightValue = analogRead(ldrPin);
+  Serial.println(lightValue);
+  if (lightValue &lt; 300) {
+    digitalWrite(ledPin, HIGH);
+    tone(buzzerPin, 1000);
+  } else {
+    digitalWrite(ledPin, LOW);
+    noTone(buzzerPin);
+  }
+  delay(200);
+}</code></pre>
+<p>Dark = alarm ON. Bright = alarm OFF.</p></div>
+
+<div class="card"><h3>Project 5: 4 LEDs in Sequence - Chaser</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>4x LEDs</li><li>4x 220 ohm resistors</li><li>Breadboard and jumper wires</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>LED 1 to Pin 2</li><li>LED 2 to Pin 3</li><li>LED 3 to Pin 4</li><li>LED 4 to Pin 5</li><li>Each LED through a 220 ohm resistor to GND</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>int leds[] = {2, 3, 4, 5};
+void setup() {
+  for (int i = 0; i &lt; 4; i++) {
+    pinMode(leds[i], OUTPUT);
+  }
+}
+void loop() {
+  for (int i = 0; i &lt; 4; i++) {
+    digitalWrite(leds[i], HIGH);
+    delay(200);
+    digitalWrite(leds[i], LOW);
+  }
+  for (int i = 3; i &gt;= 0; i--) {
+    digitalWrite(leds[i], HIGH);
+    delay(200);
+    digitalWrite(leds[i], LOW);
+  }
+}</code></pre>
+<p>The LEDs chase forward and then backward like a running light.</p></div>
+
+<div class="card"><h3>Project 6: Traffic Lights</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>1x Red LED, 1x Yellow LED, 1x Green LED</li><li>3x 220 ohm resistors</li><li>Breadboard and jumper wires</li></ul>
+<p><strong>Circuit Diagram:</strong></p>
+<ul><li>Red LED to Pin 8</li><li>Yellow LED to Pin 9</li><li>Green LED to Pin 10</li><li>Each LED through 220 ohm resistor to GND</li></ul>
+<p><strong>Code:</strong></p>
+<pre><code>int redPin = 8;
+int yellowPin = 9;
+int greenPin = 10;
+void setup() {
+  pinMode(redPin, OUTPUT);
+  pinMode(yellowPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+}
+void loop() {
+  digitalWrite(greenPin, HIGH);
+  delay(5000);
+  digitalWrite(greenPin, LOW);
+  digitalWrite(yellowPin, HIGH);
+  delay(2000);
+  digitalWrite(yellowPin, LOW);
+  digitalWrite(redPin, HIGH);
+  delay(5000);
+  digitalWrite(redPin, LOW);
+}</code></pre>
+<p>Green = GO for 5 seconds, Yellow = GET READY for 2 seconds, Red = STOP for 5 seconds.</p></div>
+
 </section>
 <!-- END OF PART 1 - PASTE PART 2 BELOW THIS LINE -->
 <section id="yoyo">
