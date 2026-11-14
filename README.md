@@ -82,7 +82,7 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 
 <div class="card">
 <h3>My Bluetooth RC Car</h3>
-<img class="hero-image" src="rc-car.jpg" alt="Finished Arduino Bluetooth RC Car">
+
 <p>This is the finished car — Arduino UNO, L298N motor driver, HC-05 Bluetooth module, battery pack and 4 wheels on a blue chassis.</p>
 </div>
 
@@ -116,7 +116,6 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 
 <div class="card">
 <h3>Blueprint - RC Car Design</h3>
-<img class="hero-image" src="rc-car-blueprint.jpg" alt="Arduino Bluetooth RC Car Blueprint">
 <p>Top view and side view. This shows where every part goes on the chassis. Chassis size: 150mm x 100mm. Wheel diameter: 50mm.</p>
 <ul>
 <li>Arduino UNO in the middle</li>
@@ -132,7 +131,7 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 <ul><li>Arduino UNO</li><li>L298N motor driver module</li><li>2x DC motors + wheels + chassis (or 4x motors)</li><li>HC-05 Bluetooth module</li><li>9V battery / 2x Li-ion batteries + battery holder</li><li>Breadboard and jumper wires</li><li>Phone with Bluetooth RC Controller app</li></ul>
 
 <h3>Circuit Diagram</h3>
-<img class="hero-image" src="rc-car-circuit.jpg" alt="RC Car Circuit Diagram">
+
 <p><strong>Wire Colours:</strong> Red = Power, Black = Ground, Yellow = Signal (TX/RX/ENA), Blue = Signal (IN1-IN4), Green = Signal (ENB)</p>
 <p><strong>Circuit Connections:</strong></p>
 <ul><li>L298N IN1 to Arduino Pin 2</li><li>L298N IN2 to Arduino Pin 3</li><li>L298N IN3 to Arduino Pin 4</li><li>L298N IN4 to Arduino Pin 5</li><li>L298N ENA to Arduino Pin 9 (speed left)</li><li>L298N ENB to Arduino Pin 10 (speed right)</li><li>L298N 12V to Battery +</li><li>L298N GND to Battery - AND Arduino GND</li><li>L298N OUT1, OUT2 to Left Motor</li><li>L298N OUT3, OUT4 to Right Motor</li><li>HC-05 VCC to 5V</li><li>HC-05 GND to GND</li><li>HC-05 TX to Arduino Pin 0 (RX)</li><li>HC-05 RX to Arduino Pin 1 (TX)</li></ul>
@@ -236,6 +235,20 @@ void stopCar() {
 <div class="note"><strong>My goal:</strong> Combine Arduino, Lego, motors and RC technology to build original machines.</div>
 </section>
 <!-- END OF PART 1A - PASTE PART 1B BELOW -->
+
+<html>
+<body>
+
+<h1>My RC Car Project</h1>
+
+<img src="IMG-20261114-WA9218.jpg" width="300">
+<br><br>
+<img src="IMG-20261114-WA7641.jpg" width="300">
+<br><br>
+<img src="IMG-20261114-WA4844.jpg" width="300">
+
+</body>
+</html>
 
 <html>
 <head>
