@@ -61,7 +61,7 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 </header>
 <nav id="navigation">
 <button class="menu-toggle" onclick="toggleMenu()" aria-expanded="false" aria-controls="navigation">☰ MENU</button>
-<a href="#home">Home</a><a href="#arduino">Arduino</a><a href="#rc">RC Engineering</a><a href="#yoyo">Yo-Yo</a><a href="#coding">Coding</a><a href="#research">Research</a><a href="#journal">Journal</a>
+<a href="#home">Home</a><a href="#arduino">Arduino</a><a href="#rc">RC Engineering</a><a href="#web">Web Development</a><a href="#yoyo">Yo-Yo</a><a href="#coding">Coding</a><a href="#research">Research</a><a href="#journal">Journal</a>
 </nav>
 <main class="container">
 <section id="intro">
@@ -70,19 +70,173 @@ footer{text-align:center;padding:30px;background:var(--nav);color:var(--muted);b
 <div class="grid">
 <div class="card"><h3>Arduino</h3><p>Electronics, sensors and microcontrollers.</p></div>
 <div class="card"><h3>RC Engineering</h3><p>Remote-controlled vehicles and machines.</p></div>
+<div class="card"><h3>Web Development</h3><p>HTML, CSS and JavaScript websites.</p></div>
 <div class="card"><h3>Yo-Yo</h3><p>Tricks, equipment and skill development.</p></div>
 <div class="card"><h3>Coding</h3><p>Python, HTML, CSS and Arduino programming.</p></div>
 </div>
 </section>
+
 <section id="rc">
-<h2>RC Engineering</h2>
-<div class="grid">
-<div class="card"><h3>RC Vehicles</h3><p>Cars, trucks and custom RC machines.</p></div>
-<div class="card"><h3>Mechanical Design</h3><p>Gears, motors, Lego mechanisms and inventions.</p></div>
-<div class="card"><h3>RC Experiments</h3><p>Transmitters, receivers and motor control.</p></div>
+<h2>RC Engineering - RC Cars</h2>
+<div class="card"><h3>What is an RC Car?</h3><p>An RC car is a remote-controlled car that you drive with a transmitter or your phone. The car has a receiver that listens to your commands and tells the motors and steering what to do. It is the best project to learn motors, batteries, steering, and Arduino coding.</p></div>
+
+<div class="card">
+<h3>My Bluetooth RC Car</h3>
+<img class="hero-image" src="rc-car.jpg" alt="Finished Arduino Bluetooth RC Car">
+<p>This is the finished car — Arduino UNO, L298N motor driver, HC-05 Bluetooth module, battery pack and 4 wheels on a blue chassis.</p>
 </div>
+
+<h3>Types of RC Cars</h3>
+<div class="grid">
+<div class="card"><h3>On-Road / Drift Car</h3><p>Fast on smooth ground. Good for drifting and racing on tarmac.</p></div>
+<div class="card"><h3>Off-Road Buggy</h3><p>For grass, dirt and rough ground. Strong suspension.</p></div>
+<div class="card"><h3>Monster Truck</h3><p>Big wheels. Jumps over obstacles. Very powerful.</p></div>
+<div class="card"><h3>Crawler</h3><p>Slow but climbs over rocks. Very strong torque.</p></div>
+</div>
+
+<h3>Main Parts of an RC Car</h3>
+<div class="card"><ul>
+<li><strong>Chassis:</strong> The frame. Holds everything together. Can be plastic, metal or Lego.</li>
+<li><strong>Motor:</strong> Makes wheels spin. Brushed = cheap for beginners. Brushless = fast and powerful.</li>
+<li><strong>ESC / Motor Driver:</strong> Controls speed of motor. Like accelerator in a real car. In Arduino projects we use L298N.</li>
+<li><strong>Servo Motor:</strong> Controls steering. Turns front wheels left and right.</li>
+<li><strong>Battery:</strong> NiMH = safe and cheap. LiPo = powerful and light, needs careful charging.</li>
+<li><strong>Transmitter + Receiver:</strong> Transmitter is remote in your hand. Receiver is inside car. In this project your phone is the transmitter via Bluetooth.</li>
+<li><strong>Wheels + Suspension:</strong> Bigger wheels = better for off-road. Suspension helps over bumps.</li>
+</ul></div>
+
+<h3>How an RC Car Works</h3>
+<div class="card"><ol>
+<li>You push throttle on remote / phone</li>
+<li>Transmitter sends radio / Bluetooth signal</li>
+<li>Receiver in car gets the signal</li>
+<li>Motor driver tells motor how fast to spin</li>
+<li>Servo turns the steering</li>
+</ol></div>
+
+<div class="card">
+<h3>Blueprint - RC Car Design</h3>
+<img class="hero-image" src="rc-car-blueprint.jpg" alt="Arduino Bluetooth RC Car Blueprint">
+<p>Top view and side view. This shows where every part goes on the chassis. Chassis size: 150mm x 100mm. Wheel diameter: 50mm.</p>
+<ul>
+<li>Arduino UNO in the middle</li>
+<li>L298N motor driver next to Arduino</li>
+<li>HC-05 Bluetooth module at the front</li>
+<li>Battery pack at the rear</li>
+<li>DC motors on left and right</li>
+</ul>
+</div>
+
+<div class="card"><h3>PROJECT: Build Your Own Bluetooth Arduino RC Car</h3>
+<p><strong>Electronics needed:</strong></p>
+<ul><li>Arduino UNO</li><li>L298N motor driver module</li><li>2x DC motors + wheels + chassis (or 4x motors)</li><li>HC-05 Bluetooth module</li><li>9V battery / 2x Li-ion batteries + battery holder</li><li>Breadboard and jumper wires</li><li>Phone with Bluetooth RC Controller app</li></ul>
+
+<h3>Circuit Diagram</h3>
+<img class="hero-image" src="rc-car-circuit.jpg" alt="RC Car Circuit Diagram">
+<p><strong>Wire Colours:</strong> Red = Power, Black = Ground, Yellow = Signal (TX/RX/ENA), Blue = Signal (IN1-IN4), Green = Signal (ENB)</p>
+<p><strong>Circuit Connections:</strong></p>
+<ul><li>L298N IN1 to Arduino Pin 2</li><li>L298N IN2 to Arduino Pin 3</li><li>L298N IN3 to Arduino Pin 4</li><li>L298N IN4 to Arduino Pin 5</li><li>L298N ENA to Arduino Pin 9 (speed left)</li><li>L298N ENB to Arduino Pin 10 (speed right)</li><li>L298N 12V to Battery +</li><li>L298N GND to Battery - AND Arduino GND</li><li>L298N OUT1, OUT2 to Left Motor</li><li>L298N OUT3, OUT4 to Right Motor</li><li>HC-05 VCC to 5V</li><li>HC-05 GND to GND</li><li>HC-05 TX to Arduino Pin 0 (RX)</li><li>HC-05 RX to Arduino Pin 1 (TX)</li></ul>
+<p class="small">Tip: Disconnect HC-05 TX/RX wires when uploading code, then reconnect them.</p>
+
+<p><strong>Code:</strong></p>
+<pre><code>// BEN LOGIC Bluetooth RC Car
+// Use App: Bluetooth RC Controller
+// F = Forward, B = Backward, L = Left, R = Right, S = Stop
+
+char command;
+int IN1 = 2;
+int IN2 = 3;
+int IN3 = 4;
+int IN4 = 5;
+int ENA = 9;
+int ENB = 10;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  stopCar();
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    command = Serial.read();
+  }
+
+  if (command == 'F') {
+    forward();
+  } else if (command == 'B') {
+    backward();
+  } else if (command == 'L') {
+    turnLeft();
+  } else if (command == 'R') {
+    turnRight();
+  } else if (command == 'S') {
+    stopCar();
+  }
+}
+
+void forward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 200);
+  analogWrite(ENB, 200);
+}
+
+void backward() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, 200);
+  analogWrite(ENB, 200);
+}
+
+void turnLeft() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 180);
+  analogWrite(ENB, 180);
+}
+
+void turnRight() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENA, 180);
+  analogWrite(ENB, 180);
+}
+
+void stopCar() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
+}</code></pre>
+<p><strong>How to drive it:</strong> Pair phone to HC-05 (password 1234 or 0000), open Bluetooth RC Controller app, connect, then use arrow buttons to drive.</p></div>
+
+<div class="card"><h3>RC Car Upgrades</h3><ul>
+<li><strong>Faster:</strong> Use stronger battery and brushless motor</li>
+<li><strong>Stronger:</strong> Use metal gears and bigger wheels</li>
+<li><strong>Smarter:</strong> Add ultrasonic sensor for obstacle avoidance</li>
+<li><strong>Longer range:</strong> Use NRF24L01 radio module instead of Bluetooth</li>
+</ul></div>
+
 <div class="note"><strong>My goal:</strong> Combine Arduino, Lego, motors and RC technology to build original machines.</div>
 </section>
+<!-- END OF PART 1A - PASTE PART 1B BELOW -->
+
 <section id="arduino">
 <h2>Arduino Laboratory</h2>
 <div class="card"><h3>What is Arduino?</h3><p>Arduino is an open-source electronics platform used to create interactive projects, robots, automation systems and inventions.</p></div>
@@ -278,101 +432,209 @@ void loop() {
 
 </section>
 <!-- END OF PART 1 - PASTE PART 2 BELOW THIS LINE -->
+
+
+<section id="web">
+<h2>Web Development - How Websites Are Made</h2>
+
+<div class="card">
+<h3>What is Web Development?</h3>
+<p>Web Development is building websites like this one — BEN LOGIC. Every website you see on your phone is made from 3 main languages working together: HTML, CSS, and JavaScript.</p>
+<p>Think of it like building a house:</p>
+<ul>
+<li><strong>HTML = The Structure / Bricks</strong> — Walls, doors, rooms</li>
+<li><strong>CSS = The Paint / Design</strong> — Colours, size, beauty</li>
+<li><strong>JavaScript = The Electricity / Brain</strong> — Lights, buttons, actions</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>1. HTML - HyperText Markup Language</h3>
+<p><strong>What it does:</strong> HTML creates the content and structure. Text, headings, images, buttons, links, videos.</p>
+<p>Without HTML, a website would be blank.</p>
+<p><strong>Example:</strong></p>
+<pre><code>&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;This is my first website&lt;/p&gt;
+&lt;button&gt;Click Me&lt;/button&gt;
+&lt;img src="my-photo.jpg"&gt;</code></pre>
+<p><strong>Important HTML tags:</strong></p>
+<ul>
+<li><code>&lt;h1&gt; to &lt;h6&gt;</code> = Headings, big to small</li>
+<li><code>&lt;p&gt;</code> = Paragraph, normal text</li>
+<li><code>&lt;img&gt;</code> = Image</li>
+<li><code>&lt;a&gt;</code> = Link to another page</li>
+<li><code>&lt;button&gt;</code> = Clickable button</li>
+<li><code>&lt;div&gt;</code> = Box to hold things together</li>
+<li><code>&lt;section&gt;</code> = A part of the page, like Arduino section</li>
+</ul>
+<p>This BEN LOGIC website is mostly HTML. Every section you see — RC, Arduino, Yo-Yo — is an HTML section.</p>
+</div>
+
+<div class="card">
+<h3>2. CSS - Cascading Style Sheets</h3>
+<p><strong>What it does:</strong> CSS makes the website beautiful. Colours, fonts, sizes, spacing, dark mode / light mode, cards, shadows.</p>
+<p>Without CSS, a website would look like plain black text on white paper. No colours, no boxes.</p>
+<p><strong>Example:</strong></p>
+<pre><code>body {
+  background: #101827;
+  color: white;
+}
+
+h2 {
+  color: #00d5ff;
+}
+
+.card {
+  background: #1c293c;
+  padding: 22px;
+  border-radius: 12px;
+}</code></pre>
+<p><strong>What this CSS means:</strong></p>
+<ul>
+<li><code>background</code> = Background colour</li>
+<li><code>color</code> = Text colour</li>
+<li><code>padding</code> = Space inside the box</li>
+<li><code>border-radius</code> = Rounded corners</li>
+</ul>
+<p>In this website, the blue cards, the dark background, and the blue headings are all CSS.</p>
+</div>
+
+<div class="card">
+<h3>3. JavaScript - The Brain</h3>
+<p><strong>What it does:</strong> JavaScript makes the website do things. When you click a button and something happens, that is JavaScript.</p>
+<p>Without JavaScript, a website is just a poster. It looks nice but does nothing.</p>
+<p><strong>Example:</strong></p>
+<pre><code>function sayHello() {
+  alert("Hello! Welcome to BEN LOGIC");
+}</code></pre>
+<p><strong>JavaScript in this website:</strong></p>
+<ul>
+<li><strong>Switch Theme button</strong> = JavaScript changes dark mode to light mode</li>
+<li><strong>MENU button on phone</strong> = JavaScript opens and closes the menu</li>
+<li><strong>Journal</strong> = JavaScript saves what you type</li>
+<li><strong>Search / Filter</strong> = JavaScript shows and hides things</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>How They Work Together</h3>
+<pre><code>&lt;!-- HTML: The Button --&gt;
+&lt;button onclick="sayHello()"&gt;Click Me&lt;/button&gt;
+
+&lt;!-- CSS: The Style --&gt;
+button {
+  background: #00d5ff;
+  padding: 11px 16px;
+  border-radius: 7px;
+}
+
+&lt;!-- JavaScript: The Action --&gt;
+function sayHello() {
+  alert("You clicked the button!");
+}</code></pre>
+<p><strong>HTML</strong> makes the button → <strong>CSS</strong> makes it blue and round → <strong>JavaScript</strong> makes it talk when you click it.</p>
+</div>
+
+<h3>My Web Development Journey</h3>
+<div class="grid">
+<div class="card"><h3>Level 1: HTML</h3><p>I learned to create headings, paragraphs, images and sections.</p></div>
+<div class="card"><h3>Level 2: CSS</h3><p>I learned to add colours, cards, and make it look good on phone and computer.</p></div>
+<div class="card"><h3>Level 3: JavaScript</h3><p>I learned to add theme switch, menu, and interactive journal.</p></div>
+<div class="card"><h3>Level 4: Projects</h3><p>Now I build full websites like BEN LOGIC and add my Arduino + RC projects to them.</p></div>
+</div>
+
+<div class="note"><strong>My goal:</strong> Use web development to show my inventions to the world — not just build them, but share them.</div>
+</section>
+
 <section id="yoyo">
-<h2>Yo-Yo Zone</h2>
-<div class="card"><h3>Introduction to Yo-Yos</h3><p>A yo-yo is a toy consisting of two connected discs with an axle around which a string is wound. It is used for tricks, freestyle and competition.</p></div>
-<h3>Types of Yo-Yos</h3>
+<h2>Yo-Yo</h2>
+<div class="card"><h3>What is Yo-Yo?</h3><p>Yo-Yo is a skill toy. You throw it down, it spins, and you bring it back with tricks. It improves focus, hand control and patience.</p></div>
 <div class="grid">
-<div class="card"><h3>Responsive</h3><p>Returns to your hand with a tug.</p></div>
-<div class="card"><h3>Unresponsive</h3><p>Requires a bind trick to return.</p></div>
-<div class="card"><h3>Fixed Axle</h3><p>Uses a fixed axle instead of a bearing.</p></div>
-<div class="card"><h3>Looping</h3><p>Designed for repeated looping tricks.</p></div>
-<div class="card"><h3>Offstring (4A)</h3><p>Yo-yo is not attached to the string.</p></div>
-<div class="card"><h3>Freehand (5A)</h3><p>Uses a counterweight for tricks.</p></div>
+<div class="card"><h3>Beginner Tricks</h3><ul><li>Sleeper</li><li>Walk the Dog</li><li>Forward Pass</li></ul></div>
+<div class="card"><h3>Intermediate Tricks</h3><ul><li>Rock the Baby</li><li>Eiffel Tower</li><li>Brain Twister</li></ul></div>
+<div class="card"><h3>Advanced Tricks</h3><ul><li>Trapeze</li><li>Double or Nothing</li><li>Bind Return</li></ul></div>
 </div>
-<h3>Popular Yo-Yo Brands</h3>
-<div class="grid">
-<div class="card"><h3>YoYoFactory</h3><p>Performance and competition yo-yos.</p></div>
-<div class="card"><h3>MagicYoyo</h3><p>Beginner and advanced yo-yos.</p></div>
-<div class="card"><h3>Duncan</h3><p>Classic and modern yo-yos.</p></div>
-<div class="card"><h3>Offset YoYo</h3><p>Modern performance yo-yos.</p></div>
-<div class="card"><h3>C3yoyodesign</h3><p>Competition-focused yo-yos.</p></div>
-<div class="card"><h3>One Drop</h3><p>Precision-machined yo-yos.</p></div>
-</div>
-<h3>Parts of a Yo-Yo</h3>
-<div class="card"><ul><li>Body or halves – main structure.</li><li>Bearing – allows spinning.</li><li>Axle – connects the halves.</li><li>Response pads – control return response.</li><li>String – connects the yo-yo to your finger.</li><li>Hub – central axle area.</li><li>Weight rings – adjust weight distribution.</li></ul></div>
-<h3>Yo-Yo Learning Levels</h3>
-<div class="grid">
-<div class="card"><h3>Level 1: Beginner</h3><p>Sleeper, Forward Pass and Walk the Dog.</p></div>
-<div class="card"><h3>Level 2: Intermediate</h3><p>Trapeze, Brain Twister and string tricks.</p></div>
-<div class="card"><h3>Level 3: Advanced</h3><p>Eli Hops, Brent Stole and complex combinations.</p></div>
-<div class="card"><h3>Level 4: Competition</h3><p>Freestyle, speed, precision and combinations.</p></div>
-</div>
-<p class="small">These are suggested learning stages, not official universal rankings.</p>
+<div class="card"><h3>Types of Yo-Yos</h3><ul><li><strong>Responsive:</strong> Comes back with a tug. Best for beginners.</li><li><strong>Unresponsive:</strong> Spins longer. Needs a Bind to return. Best for advanced tricks.</li></ul></div>
 </section>
+
 <section id="coding">
-<h2>Coding Academy</h2>
+<h2>Coding</h2>
+<div class="card"><h3>What is Coding?</h3><p>Coding is giving instructions to a computer. You write the instructions in a language the computer understands.</p></div>
 <div class="grid">
-<div class="card"><h3>Python</h3><p>Learn programming, logic and automation.</p></div>
-<div class="card"><h3>Web Development</h3><p>HTML, CSS and JavaScript projects.</p></div>
-<div class="card"><h3>Arduino Coding</h3><p>Write programs for electronic inventions.</p></div>
+<div class="card"><h3>Python</h3><p>Easy to learn. Good for games, apps, and AI.</p><pre><code>print("Hello BEN LOGIC")</code></pre></div>
+<div class="card"><h3>HTML + CSS</h3><p>For building websites.</p><pre><code>&lt;h1&gt;My Website&lt;/h1&gt;</code></pre></div>
+<div class="card"><h3>JavaScript</h3><p>For making websites interactive.</p><pre><code>alert("Hello!")</code></pre></div>
+<div class="card"><h3>Arduino C++</h3><p>For controlling electronics, motors and sensors.</p><pre><code>digitalWrite(13, HIGH);</code></pre></div>
 </div>
 </section>
+
 <section id="research">
-<h2>Research &amp; Inventions</h2>
-<div class="grid">
-<div class="card"><h3>New Ideas</h3><p>Document creative ideas and future inventions.</p></div>
-<div class="card"><h3>Project Development</h3><p>Turn ideas into working prototypes.</p></div>
-<div class="card"><h3>Experiments</h3><p>Record results and discoveries.</p></div>
-<div class="card"><h3>Innovation</h3><p>Explore new solutions to practical problems.</p></div>
-</div>
+<h2>Research</h2>
+<div class="card"><h3>My Research Topics</h3><ul><li>How Bluetooth controls robots</li><li>How sensors help robots see the world</li><li>How to make RC cars faster and smarter</li><li>How websites and apps are built</li></ul></div>
+<div class="card"><h3>What I Want To Invent</h3><p>A smart RC car that can avoid obstacles by itself, follow a line, and be controlled from a phone.</p></div>
 </section>
+
 <section id="journal">
-<h2>My Research Journal</h2>
-<p>Write down your latest ideas and discoveries.</p>
-<div class="card">
-<h3 id="formHeading">Create a Journal Entry</h3>
-<input id="title" type="text" placeholder="Project or journal title" maxlength="100">
-<textarea id="note" rows="5" placeholder="Write your notes here..." maxlength="5000"></textarea>
-<button onclick="saveNote()">Save Entry</button>
-<button id="cancelEdit" onclick="cancelEditing()" hidden>Cancel Edit</button>
+<h2>My Journal</h2>
+<div class="card"><p>Write your ideas, experiments and progress here. It is saved on this device.</p>
+<input type="text" id="journalTitle" placeholder="Title...">
+<textarea id="journalText" rows="4" placeholder="Write your journal entry..."></textarea>
+<button onclick="saveJournal()">Save Entry</button>
+<button onclick="clearJournal()">Clear All</button>
+<div id="journalList"></div>
 </div>
-<div class="card">
-<h3>Search Journal</h3>
-<input id="searchNotes" type="search" placeholder="Search your saved entries..." oninput="showNotes()">
-<p id="noteCount" class="small"></p>
-</div>
-<div id="entries" aria-live="polite"></div>
-<button onclick="exportNotes()">Export Journal</button>
 </section>
+
 </main>
 <footer>
-<h3>BEN LOGIC</h3>
-<p>Hobby &amp; Research Hub</p>
-<p>Learning • Creating • Experimenting • Inventing</p>
-<p class="small">Designed for curiosity and innovation.</p>
+<p>© 2026 BEN LOGIC | Hobby & Research Hub</p>
+<p class="small">Built with HTML, CSS and JavaScript. Arduino, RC Engineering, Yo-Yo, Coding & Research.</p>
 </footer>
+
 <script>
-function storageGet(k,f){try{const v=localStorage.getItem(k);return v===null?f:v;}catch(e){return f;}}
-function storageSet(k,v){try{localStorage.setItem(k,v);return true;}catch(e){alert("Browser storage is unavailable or full.");return false;}}
-function toggleTheme(){document.body.classList.toggle("light");const t=document.body.classList.contains("light")?"light":"dark";storageSet("benTheme",t);updateThemeButton();}
-function updateThemeButton(){const b=document.getElementById("themeButton");b.textContent=document.body.classList.contains("light")?"Switch to Dark Mode":"Switch to Light Mode";}
-if(storageGet("benTheme","dark")==="light"){document.body.classList.add("light");}
-updateThemeButton();
-function toggleMenu(){const nav=document.getElementById("navigation");const b=nav.querySelector(".menu-toggle");const o=nav.classList.toggle("open");b.setAttribute("aria-expanded",String(o));b.textContent=o?"✕ CLOSE MENU":"☰ MENU";}
-document.querySelectorAll("nav a").forEach(function(l){l.addEventListener("click",function(){const nav=document.getElementById("navigation");const b=nav.querySelector(".menu-toggle");nav.classList.remove("open");b.setAttribute("aria-expanded","false");b.textContent="☰ MENU";});});
-function escapeHTML(v){return String(v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
-function getNotes(){try{const n=JSON.parse(storageGet("benNotes","[]"));return Array.isArray(n)?n:[];}catch(e){return [];}}
-let editingId=null;
-function saveNote(){const t=document.getElementById("title").value.trim();const n=document.getElementById("note").value.trim();if(!t||!n){alert("Please enter a title and your notes.");return;}const e=getNotes();if(editingId!==null){const i=e.findIndex(function(x){return x.id===editingId;});if(i!==-1){e[i].title=t;e[i].note=n;e[i].updated=new Date().toLocaleString();}}else{e.unshift({id:Date.now().toString()+Math.random().toString(36).slice(2),title:t,note:n,date:new Date().toLocaleString()});}if(!storageSet("benNotes",JSON.stringify(e))){return;}const w=editingId!==null;clearForm();showNotes();alert(w?"Journal entry updated!":"Journal entry saved!");editingId=null;}
-function clearForm(){document.getElementById("title").value="";document.getElementById("note").value="";document.getElementById("formHeading").textContent="Create a Journal Entry";document.getElementById("cancelEdit").hidden=true;}
-function editNote(id){const e=getNotes().find(function(x){return x.id===id;});if(!e)return;document.getElementById("title").value=e.title;document.getElementById("note").value=e.note;document.getElementById("formHeading").textContent="Edit Journal Entry";document.getElementById("cancelEdit").hidden=false;editingId=id;document.getElementById("journal").scrollIntoView({behavior:"smooth"});}
-function cancelEditing(){editingId=null;clearForm();}
-function deleteNote(id){if(!confirm("Delete this entry?"))return;const e=getNotes().filter(function(x){return x.id!==id;});storageSet("benNotes",JSON.stringify(e));if(editingId===id){cancelEditing();}showNotes();}
-function showNotes(){const box=document.getElementById("entries");const c=document.getElementById("noteCount");const q=(document.getElementById("searchNotes").value||"").toLowerCase().trim();let e=getNotes();if(q){e=e.filter(function(x){return (x.title+" "+x.note).toLowerCase().includes(q);});}c.textContent=e.length+" entr"+(e.length===1?"y":"ies")+" found";if(e.length===0){box.innerHTML='<div class="empty">'+(q?"No entries match your search.":"No journal entries yet. Write your first one above!")+'</div>';return;}box.innerHTML=e.map(function(x){return '<div class="card journal-entry"><h3>'+escapeHTML(x.title)+'</h3><p>'+escapeHTML(x.note).replace(/\n/g,"<br>")+'</p><p class="small">'+escapeHTML(x.updated?("Updated: "+x.updated):("Created: "+x.date))+'</p><button onclick="editNote(\''+x.id+'\')">Edit</button> <button onclick="deleteNote(\''+x.id+'\')">Delete</button></div>';}).join("");}
-function exportNotes(){const e=getNotes();if(e.length===0){alert("No entries to export.");return;}const t=e.map(function(x){return "TITLE: "+x.title+"\nDATE: "+(x.date||"")+"\n"+x.note+"\n\n---\n";}).join("\n");const b=new Blob([t],{type:"text/plain"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="ben-logic-journal.txt";a.click();URL.revokeObjectURL(a.href);}
-showNotes();
+function toggleTheme(){
+  document.body.classList.toggle('light');
+  const isLight = document.body.classList.contains('light');
+  localStorage.setItem('benlogic-theme', isLight ? 'light' : 'dark');
+  document.getElementById('themeButton').textContent = isLight ? 'Switch to Dark' : 'Switch Theme';
+}
+function toggleMenu(){
+  const nav = document.getElementById('navigation');
+  nav.classList.toggle('open');
+}
+document.addEventListener('click', function(e){
+  const nav = document.getElementById('navigation');
+  if(window.innerWidth <= 650 && nav.classList.contains('open') && !e.target.closest('#navigation')){
+    nav.classList.remove('open');
+  }
+});
+function saveJournal(){
+  const title = document.getElementById('journalTitle').value.trim();
+  const text = document.getElementById('journalText').value.trim();
+  if(!title && !text){ alert('Write something first!'); return; }
+  let entries = JSON.parse(localStorage.getItem('benlogic-journal') || '[]');
+  entries.unshift({title: title || 'Untitled', text: text, date: new Date().toLocaleString()});
+  localStorage.setItem('benlogic-journal', JSON.stringify(entries));
+  document.getElementById('journalTitle').value = '';
+  document.getElementById('journalText').value = '';
+  displayJournal();
+}
+function displayJournal(){
+  const list = document.getElementById('journalList');
+  let entries = JSON.parse(localStorage.getItem('benlogic-journal') || '[]');
+  if(entries.length === 0){ list.innerHTML = '<p class="empty">No entries yet. Write your first one!</p>'; return; }
+  list.innerHTML = entries.map(function(e){
+    return '<div class="journal-entry card"><h3>'+e.title+'</h3><p class="small">'+e.date+'</p><p>'+e.text+'</p></div>';
+  }).join('');
+}
+function clearJournal(){
+  if(confirm('Delete all journal entries?')){ localStorage.removeItem('benlogic-journal'); displayJournal(); }
+}
+window.onload = function(){
+  const savedTheme = localStorage.getItem('benlogic-theme');
+  if(savedTheme === 'light'){ document.body.classList.add('light'); document.getElementById('themeButton').textContent = 'Switch to Dark'; }
+  displayJournal();
+};
 </script>
 </body>
 </html>
-
